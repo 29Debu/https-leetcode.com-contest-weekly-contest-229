@@ -1,0 +1,35 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+   int nums[] = {-5,-3,-3,-2,7,1};
+   int multiplyiers[] = {-10,-5,3,4,6};
+   int n = sizeof(multiplyiers)/sizeof(nums[0]);
+   int start = 0, end = n , sum = 0;
+   int c = sizeof(multiplyiers)/sizeof(multiplyiers[0]);
+   int p;
+   for (int i = 0; i < c; ++i)
+   {
+   	cout<<"to multiply from start enter 1 otherwise 0";
+   	cin>>p;
+   	if (p == 1)
+   	{
+   		sum += nums[start] * multiplyiers[i];
+   		start++;
+   	}
+   	if (p == 0){
+   		sum += nums[end] * multiplyiers[i];
+   		end--;
+   	}
+   }
+   cout<<sum;
+}
