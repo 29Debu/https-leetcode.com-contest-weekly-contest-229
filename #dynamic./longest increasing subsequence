@@ -1,0 +1,29 @@
+//longest increasing subsequence
+#include <iostream>
+using namespace std;
+int main()
+{
+	int arr[] = {10, 22, 9, 33, 21, 50, 41, 60};
+	int s = sizeof(arr)/sizeof(arr[0]);
+	int lon[s], max = 0;
+	for (int i = 0; i < s; ++i)
+	{
+		lon[i] = 1;
+	}
+	for (int j = 1; j < s; ++j)
+		for (int k = 0; k < j; ++k)
+		{
+			if (arr[j] > arr[k])
+				if (lon[k] + 1 > lon[j])
+					lon[j] = lon[k] + 1;
+		}
+    for (int p = 0; p < s; ++p)
+    {
+    	if (lon[p] > max)
+    	{
+    		max = lon[p];
+    	}
+    }
+    cout<<max;
+	return 0;
+}
