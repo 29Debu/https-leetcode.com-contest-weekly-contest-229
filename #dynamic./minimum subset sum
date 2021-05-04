@@ -1,0 +1,37 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int dp(int arr[], int n, int r){
+	bool add[n+1][r+1];
+	int mn = r;
+	for (int i = 0; i < n+1; ++i)
+		for (int j = 0; j < r+1; ++j)
+		{
+			if(j == 0)
+				add[i][j] = true;
+			else if (i == 0)
+				add[i][j] = false;
+			else if(arr[i-1] > j)
+				add[i][j] = add[i-1][j];
+			else
+				add[i][j] = add[i-1][j] || add[i-1][j - arr[i-1]];
+		}
+	for (int p = r/2; p >= 0; --p)
+	{
+		if(add[n][p] == true){
+			mn = r - 2*p;
+			break;
+		}
+	}
+    return mn;
+}
+
+int main()
+{
+	int brr[] = {1, 5, 1, 6};
+	int m = sizeof(brr)/sizeof(brr[0]);
+	int range =13;
+	cout<< dp(brr, m, range);
+	return 0;
+}
