@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+int dp(int arr[], int mo, int n){
+	int val[mo+1][n];
+	int x, y;
+	for (int p = 0; p < n; ++p)
+	{
+		val[0][p] = 1;
+	}
+	for(int i = 1; i<mo+1; i++){
+		for(int j = 0; j<n; j++){
+			x = (i >= arr[j]) ? val[i - arr[j]][j] : 0;
+			y = (j >= 1) ? val[i][j-1] : 0;
+			val[i][j] = x+y;
+		}
+	}
+	return val[mo][n-1];
+}
+
+int main()
+{
+	int brr[] = {1, 2, 3};
+	int money = 5;
+	int m = sizeof(brr)/sizeof(brr[0]);
+	cout<<dp(brr, money, m);
+	return 0;
+}
